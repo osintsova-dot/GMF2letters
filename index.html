@@ -237,16 +237,16 @@ input:focus, textarea:focus, select:focus { border-color: #6C3FC5; }
 // UNIT DATA GMF2
 // ════════════════════════════════════════
 var UNITS = [
-  {n:'St', label:'Starter', t:'Starter Unit',              m:'Сентябрь', lessons:4,  v:'школьных предметах и погоде',           g:'вопросах о предметах и погоде'},
-  {n:'1',  label:'1',       t:'Sports & Action Verbs',     m:'Октябрь',  lessons:8,  v:'видах спорта',                          g:'глаголах действия; I play / I don\'t play'},
-  {n:'2',  label:'2',       t:'Food & Shopping',           m:'Ноябрь',   lessons:9,  v:'еде и ценах',                           g:'a/an/some; How much is/are?; числа до 50'},
-  {n:'3',  label:'3',       t:'Wild Animals',              m:'Декабрь',  lessons:8,  v:'диких животных и частях тела',          g:'has got / hasn\'t got'},
-  {n:'4',  label:'4',       t:'Nature Trail',              m:'Январь',   lessons:8,  v:'природе и движениях',                   g:'Present Continuous; предлоги движения'},
-  {n:'5',  label:'5',       t:'Action & Clothes',          m:'Февраль',  lessons:8,  v:'одежде и прилагательных',               g:'прилагательные + существительные'},
-  {n:'6',  label:'6',       t:'Seasons & Dates',           m:'Март',     lessons:8,  v:'временах года, месяцах и датах',        g:'порядковые числа; When is your birthday?'},
-  {n:'7',  label:'7',       t:'My House',                  m:'Апрель',   lessons:9,  v:'комнатах, мебели и вещах',              g:'there is/are; притяжательные местоимения'},
-  {n:'8',  label:'8',       t:'My Town',                   m:'Апрель',   lessons:8,  v:'местах в городе и направлениях',        g:'объяснение дороги: turn left/right, go straight'},
-  {n:'9',  label:'9',       t:'Holidays',                  m:'Май',      lessons:9,  v:'местах отдыха',                         g:'was/were; неправильные множественные числа'},
+  {n:'St', label:'Starter', t:'Let\'s go back to school! — Снова в школу', m:'Сентябрь', lessons:3,  v:'повторении Level 1: животные, игрушки, школьные предметы, одежда, еда, числа 1–20', g:'What\'s his/her name? — His/Her name is (Jake)'},
+  {n:'1',  label:'Unit 1',  t:'Move your body — Спорт и движение', m:'Сентябрь–Октябрь', lessons:7,  v:'видах спорта (football, tennis, swimming, cycling, skateboarding…)', g:'I play (tennis). / I go (swimming). / Do you…? — Yes, I do. / No, I don\'t.'},
+  {n:'2',  label:'Unit 2',  t:'Let\'s go shopping! — Покупки и продукты', m:'Октябрь', lessons:7,  v:'продуктах (bread, tomatoes, potatoes, green beans, peaches, yoghurt…)', g:'Can I have (a peach / some bread), please? / a / an / some'},
+  {n:'3',  label:'Unit 3',  t:'At the zoo — В зоопарке',   m:'Ноябрь',   lessons:7,  v:'диких животных (lion, giraffe, crocodile, penguin, lizard…)', g:'It\'s got (long hair). / Has it got…? — Yes, it has. / No, it hasn\'t.'},
+  {n:'4',  label:'Unit 4',  t:'The nature trail — На природе', m:'Ноябрь–Декабрь', lessons:9,  v:'природе (forest, hill, river, lake, path, bridge…)', g:'What are you doing? / I\'m (climbing). — Present Continuous'},
+  {n:'5',  label:'Unit 5',  t:'The frozen lake — Зимние забавы', m:'Январь–Февраль', lessons:7,  v:'зимних активностях (skating, sledging, snowboarding, making a snowman…)', g:'We\'re (skating). / They\'re (making a snowman). / Are you…? — Yes, we are.'},
+  {n:'6',  label:'Unit 6',  t:'All year round — Круглый год', m:'Февраль', lessons:7,  v:'временах года и сезонных занятиях (plant seeds, go to the beach, collect leaves…)', g:'What do you do in (autumn)? / We (collect leaves). — Present Simple'},
+  {n:'7',  label:'Unit 7',  t:'My house — Мой дом',        m:'Март',     lessons:7,  v:'комнатах и частях дома (hall, living room, kitchen, garage, garden…)', g:'There\'s a / There isn\'t a (garage). / There are / aren\'t any (bedrooms).'},
+  {n:'8',  label:'Unit 8',  t:'All around the town — Наш город', m:'Март–Апрель', lessons:7,  v:'местах в городе (bank, post office, museum, train station, car park…)', g:'Is there a (bank)? — Yes, there is. / Are there any (museums)?'},
+  {n:'9',  label:'Unit 9',  t:'Holiday fun — Каникулы и развлечения', m:'Апрель–Май', lessons:11, v:'местах отдыха (circus, castle, funfair, aquarium, water park…)', g:'Where were you yesterday? — I was at the (funfair). / was / were'},
 ];
 
 var SL={1:'не усвоено',2:'слабо, нужна дополнительная работа',3:'справляется с поддержкой',4:'уверенно',5:'отлично, без подсказок'};
@@ -287,7 +287,7 @@ function selUnitByIdx(i,mode,clickedBtn){
   if(clickedBtn) clickedBtn.classList.add('on');
   else document.querySelectorAll('#'+pillsId+' .pill')[i].classList.add('on');
   var u=UNITS[i];
-  document.getElementById(infoId).innerHTML='<strong>'+u.label+' — '+u.t+'</strong> · '+u.m+'<br>Лексика: «'+u.v+'»<br>Грамматика: «'+u.g+'»';
+  document.getElementById(infoId).innerHTML='<strong>'+u.label+' · '+u.t+'</strong> · '+u.m+'<br>Лексика: «'+u.v+'»<br>Грамматика: «'+u.g+'»';
   if(mode==='group') GS.ui=i;
   else {
     S.ui=i;
@@ -377,7 +377,7 @@ function buildReport(name,teacher,ui,v,g,a,attGot,attTotal,online,hw,app,ts,tt,n
 
   return [
     'Дорогие родители!',
-    u.label+' — '+u.t+' завершён. Вот краткие итоги.',
+    u.label+' · '+u.t+' — юнит завершён. Вот краткие итоги.',
     '👤 Ученик: '+name,
     '',
     goodL.trim(),
@@ -531,7 +531,7 @@ function saveOne(){
   var idx=JSON.parse(localStorage.getItem(idxKey)||'[]');
   var entry=name+'||'+S.ui;
   if(idx.indexOf(entry)===-1){idx.push(entry);localStorage.setItem(idxKey,JSON.stringify(idx));}
-  document.getElementById('saveOneMsg').textContent='✓ Сохранено: '+name+' · Unit '+UNITS[S.ui].label;
+  document.getElementById('saveOneMsg').textContent='✓ Сохранено: '+name+' · '+UNITS[S.ui].label;
   document.getElementById('saveBtnOne').style.background='#EDE7FA';
   setTimeout(function(){document.getElementById('saveOneMsg').textContent='';document.getElementById('saveBtnOne').style.background='white';},3000);
 }
@@ -557,7 +557,7 @@ function saveGroup(){
     saved++;
   }
   var msg=document.getElementById('saveGroupMsg');
-  msg.textContent='✓ Сохранено учеников: '+saved+' · Unit '+UNITS[GS.ui].label;
+  msg.textContent='✓ Сохранено учеников: '+saved+' · '+UNITS[GS.ui].label;
   setTimeout(function(){msg.textContent='';},3000);
 }
 
@@ -607,7 +607,7 @@ function showUnitData(name,unitIdx){
   var d=JSON.parse(localStorage.getItem(key)||'null');
   if(!d){alert('Нет данных');return;}
   var u=UNITS[unitIdx];
-  alert('Unit '+u.label+' — '+u.t+'\nЛексика: '+d.v+'/5  Грамматика: '+d.g+'/5  Активность: '+d.a+'/5\n'+(d.attGot?'Посещаемость: '+d.attGot+'/'+d.attTotal+'\n':'')+(d.hw?'ДЗ: '+d.hw+'%\n':'')+(d.ts?'Тест: '+d.ts+(d.tt?'/'+d.tt:'')+'\n':'')+(d.note?'Заметка: '+d.note+'\n':'')+'Сохранено: '+d.savedAt);
+  alert(u.label+' · '+u.t+'\nЛексика: '+d.v+'/5  Грамматика: '+d.g+'/5  Активность: '+d.a+'/5\n'+(d.attGot?'Посещаемость: '+d.attGot+'/'+d.attTotal+'\n':'')+(d.hw?'ДЗ: '+d.hw+'%\n':'')+(d.ts?'Тест: '+d.ts+(d.tt?'/'+d.tt:'')+'\n':'')+(d.note?'Заметка: '+d.note+'\n':'')+'Сохранено: '+d.savedAt);
 }
 
 function deletePupil(name){
